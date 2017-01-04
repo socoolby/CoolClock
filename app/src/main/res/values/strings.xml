@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">CoolClock</string>
+    <string name="setting">Setting</string>
+    <string name="half_an_hour">Half an hour</string>
+    <string name="hours">Hours</string>
+    <string name="no_report">No report</string>
+    <string name="trigger_screen_on_off">Trigger Screen ON/OFF</string>
+    <string name="trigger_on_and_auto_off">Trigger ON and auto OFF</string>
+    <string name="trigger_manual_on_and_off">Trigger Manual On and OFF</string>
+    <string name="no_trigger">No Trigger</string>
+    <string name="play_tick">Play tick</string>
+    <string name="shenzhen">Shenzhen</string>
+    <string name="uninstall">Uninstall</string>
+    <string name="teim_report">Time report</string>
+    <string name="always_zuo_never_die">Always zuo,never die.</string>
+    <string name="description">Description</string>
+    <string name="weather_citiyname">Weather CitiyName:</string>
+    <string name="tick">Tick</string>
+    <string name="socoolby">Socoolby</string>
+    <string name="email"><a href="mailto:socoolby@gmail.com">socoolby@gmail.com</a></string>
+    <string name="github"><a href="https://github.com/socoolby/coolClock">Github:CoolClock</a></string>
+    <string name="about">About</string>
+    <string name="except">Except</string>
+    <string name="motto">Motto</string>
+</resources>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="clock.socoolby.com.clock.MainActivity">
+
+        <TextView
+            android:id="@+id/tv_talking_clock"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/teim_report"
+
+            />
+
+        <RadioGroup
+            android:id="@+id/rg_talking_clock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_talking_clock">
+
+            <RadioButton
+                android:id="@+id/rb_halfhour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/half_an_hour" />
+
+            <RadioButton
+                android:id="@+id/rb_hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hours" />
+
+            <RadioButton
+                android:id="@+id/rb_noreport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_report" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/tv_except"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/rg_talking_clock"
+            android:layout_marginLeft="5dp"
+            android:text="@string/except" />
+
+        <RelativeLayout
+            android:id="@+id/rel_talking_time_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_except"
+            android:layout_marginLeft="20dp">
+
+            <clock.socoolby.com.clock.widget.WheelView
+                android:id="@+id/weel_start_time"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content" />
+
+            <clock.socoolby.com.clock.widget.WheelView
+                android:id="@+id/weel_stop_time"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/weel_start_time" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_tick_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rel_talking_time_duration"
+            android:layout_marginTop="@dimen/setting_margin_top"
+            android:text="@string/tick" />
+
+        <CheckBox
+            android:id="@+id/cb_tick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_tick_title"
+            android:text="@string/play_tick" />
+
+        <TextView
+            android:id="@+id/tv_weather_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cb_tick"
+            android:layout_marginTop="@dimen/setting_margin_top"
+            android:text="@string/weather_citiyname" />
+
+        <EditText
+            android:id="@+id/et_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_weather_title"
+            android:inputType="text"
+            android:text="@string/shenzhen" />
+
+        <TextView
+            android:id="@+id/tv_description_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_city"
+            android:layout_marginTop="@dimen/setting_margin_top"
+            android:text="@string/motto" />
+
+        <EditText
+            android:id="@+id/et_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_description_title"
+            android:hint="@string/description"
+            android:inputType="text"
+            android:text="@string/always_zuo_never_die" />
+
+        <Button
+            android:id="@+id/btn_uninstall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_description"
+            android:layout_marginTop="@dimen/setting_margin_top"
+            android:text="@string/uninstall" />
+
+        <Button
+            android:id="@+id/btn_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_uninstall"
+            android:layout_marginTop="10dp"
+            android:text="@string/about" />
+
+
+    </RelativeLayout>
+
+</ScrollView>
