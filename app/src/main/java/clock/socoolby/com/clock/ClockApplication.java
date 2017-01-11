@@ -2,6 +2,9 @@ package clock.socoolby.com.clock;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Environment;
+
+import java.io.File;
 
 import clock.socoolby.com.clock.protocol.BusinessService;
 import clock.socoolby.com.clock.utils.Constants;
@@ -29,7 +32,6 @@ public class ClockApplication extends Application {
 
     public void init() {
         if (!FileUtils.isExistsFile(Constants.SHARE_PERFERENCE_FILE)) {
-            FileUtils.createFolder();
             SharePerferenceModel model = new SharePerferenceModel();
             model.setTypeHourPower(Constants.TALKING_HALF_AN_HOUR);
             DateModel startTimeModel = new DateModel();

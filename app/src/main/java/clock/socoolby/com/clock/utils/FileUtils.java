@@ -18,12 +18,6 @@ import clock.socoolby.com.clock.ClockApplication;
  */
 public class FileUtils {
 
-    public static void createFolder() {
-        File file = getFile("");
-        if (!file.exists())
-            file.mkdirs();
-    }
-
 
     public static boolean isExistsFile(String fileName) {
         File file = getFile(fileName);
@@ -32,14 +26,7 @@ public class FileUtils {
 
     public static File getFile(String path) {
         try {
-            File file;
-            if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                file = new File(ClockApplication.getContext().getFilesDir().getPath() + Constants.CLOCK_FOLDER + path);
-            } else {
-                file = new File(Environment.getExternalStorageDirectory().getPath() + Constants.CLOCK_FOLDER + path);
-            }
-
-            return file;
+            return new File(ClockApplication.getContext().getFilesDir() + path);
 
         } catch (Exception e) {
             e.printStackTrace();

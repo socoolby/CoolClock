@@ -26,10 +26,10 @@ public class FuncUnit {
     public static String getVersionName(String packageName) {
         try {
             PackageInfo packageInfo = ClockApplication.getContext().getPackageManager().getPackageInfo(packageName, 0);
-            return packageInfo.versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            return null;
-        }
+        return packageInfo.versionName;
+    } catch (PackageManager.NameNotFoundException e) {
+        return null;
+    }
     }
 
     public static void openURL(Context c, String url) {

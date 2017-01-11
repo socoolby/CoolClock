@@ -38,4 +38,13 @@
         android:text="@string/email"
         android:textColor="#6060ff"
         android:textSize="26sp" />
+    <TextView
+        android:id="@+id/version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:textSize="22sp" />
+
 </RelativeLayout>

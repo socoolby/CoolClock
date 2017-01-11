@@ -12,7 +12,7 @@
     <string name="shenzhen">Shenzhen</string>
     <string name="uninstall">Uninstall</string>
     <string name="teim_report">Time report</string>
-    <string name="always_zuo_never_die">Always zuo,never die.</string>
+    <string name="always_zuo_never_die">Always zuo, never die.</string>
     <string name="description">Description</string>
     <string name="weather_citiyname">Weather CitiyName:</string>
     <string name="tick">Tick</string>
@@ -22,4 +22,5 @@
     <string name="about">About</string>
     <string name="except">Except</string>
     <string name="motto">Motto</string>
+    <string name="version">Version:</string>
 </resources>
