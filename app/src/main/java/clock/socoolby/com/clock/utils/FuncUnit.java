@@ -1,10 +1,16 @@
 package clock.socoolby.com.clock.utils;
 
+import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.text.TextUtils;
+import android.util.Log;
+
+import java.util.List;
 
 import clock.socoolby.com.clock.ClockApplication;
 
@@ -14,6 +20,8 @@ import clock.socoolby.com.clock.ClockApplication;
  */
 
 public class FuncUnit {
+    private final static String TAG = FuncUnit.class.getSimpleName();
+
     public static String getBoxPackageName() {
         try {
             PackageInfo packageInfo = ClockApplication.getContext().getPackageManager().getPackageInfo(ClockApplication.getContext().getPackageName(), 0);
@@ -23,13 +31,14 @@ public class FuncUnit {
         }
         return null;
     }
+
     public static String getVersionName(String packageName) {
         try {
             PackageInfo packageInfo = ClockApplication.getContext().getPackageManager().getPackageInfo(packageName, 0);
-        return packageInfo.versionName;
-    } catch (PackageManager.NameNotFoundException e) {
-        return null;
-    }
+            return packageInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            return null;
+        }
     }
 
     public static void openURL(Context c, String url) {
@@ -40,4 +49,22 @@ public class FuncUnit {
         c.startActivity(intent);
     }
 
+    /**
+     * @param context
+     * @param className Activity Class Name
+     */
+    public static boolean isForeground(Context context, String className) {
+        if (context == null || TextUtils.isEmpty(className)) {
+            return false;
+        }
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> list = am.getRunningTasks(1);
+        if (list != null && list.size() > 0) {
+            ComponentName cpn = list.get(0).topActivity;
+            if (className.equals(cpn.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

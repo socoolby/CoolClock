@@ -2,13 +2,8 @@ package clock.socoolby.com.clock;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
@@ -27,13 +22,11 @@ import clock.socoolby.com.clock.protocol.WeatherResponse;
 import clock.socoolby.com.clock.utils.Constants;
 import clock.socoolby.com.clock.utils.DateModel;
 import clock.socoolby.com.clock.utils.Player;
-import clock.socoolby.com.clock.utils.ScreenManager;
 import clock.socoolby.com.clock.utils.SharePerferenceModel;
 
 public class MainActivity extends Activity implements Handler.Callback, View.OnClickListener {
     private final static String TAG = MainActivity.class.getSimpleName();
     private final static int SETTING_REQUEST_CODE = 100;
-    private final static int MSG_TURN_SCREEN_OFF = 101;
 
     public final static int MODE_NORMAL = 200;
     public final static int MODE_SETTING_OTHER = 202;
@@ -44,14 +37,12 @@ public class MainActivity extends Activity implements Handler.Callback, View.OnC
     private TextView tv_day;
     private TextView tv_weather;
     private TextView tv_descript;
-    private TimerTask timerTask;
     private TextView tv_setting;
 
     private Timer timer;
     private Handler handler;
     private final static int UPDATE_TIME = 100;
 
-    private PowerManager powerManager = null;
     private PowerManager.WakeLock wakeLock = null;
 
 
@@ -68,6 +59,7 @@ public class MainActivity extends Activity implements Handler.Callback, View.OnC
         if (weather.getTodayWeather() != null)
             tv_weather.setText(weather.getTodayWeather().weather);
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,15 +82,15 @@ public class MainActivity extends Activity implements Handler.Callback, View.OnC
         RelativeLayout rel_main = (RelativeLayout) findViewById(R.id.rel_main);
         rel_main.setOnClickListener(this);
         init();
-        powerManager = (PowerManager) this.getSystemService(POWER_SERVICE);
-        wakeLock = this.powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "Clock");
-        localWakeLock = this.powerManager.newWakeLock(32, "MyPower");
+        PowerManager powerManager = (PowerManager) this.getSystemService(POWER_SERVICE);
+        wakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "Clock");
+        localWakeLock = powerManager.newWakeLock(32, "MyPower");
 
         ClockApplication.getInstance().setMainActivity(this);
         ClockApplication.getInstance().getBusinessService().getWeather(model.getCity());
 
         timer = new Timer();
-        timerTask = new TimerTask() {
+        TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
                 handler.sendEmptyMessage(UPDATE_TIME);
@@ -121,6 +113,12 @@ public class MainActivity extends Activity implements Handler.Callback, View.OnC
         if (model.getDescription() != null) {
             tv_descript.setText(model.getDescription());
         }
+        Intent startIntent = new Intent(this, ProximityService.class);
+        if (model.isTriggerScreen()) {
+            startService(startIntent);
+        } else {
+            stopService(startIntent);
+        }
     }
 
 
@@ -137,7 +135,6 @@ public class MainActivity extends Activity implements Handler.Callback, View.OnC
     protected void onPause() {
         super.onPause();
         wakeLock.release();
-        handler.removeMessages(MSG_TURN_SCREEN_OFF);
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -189,11 +186,6 @@ public class MainActivity extends Activity implements Handler.Callback, View.OnC
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-//        if (tv_setting.getVisibility() == View.VISIBLE) {
-//            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-//        } else {
-//            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
-//        }
     }
 
     @Override
@@ -209,9 +201,6 @@ public class MainActivity extends Activity implements Handler.Callback, View.OnC
         switch (msg.what) {
             case UPDATE_TIME:
                 updateTime();
-                break;
-            case MSG_TURN_SCREEN_OFF:
-                ScreenManager.systemLock(this);
                 break;
         }
 

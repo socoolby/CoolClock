@@ -62,4 +62,5 @@ public class ClockApplication extends Application {
     public MainActivity getMainActivity() {
         return mMainActivity;
     }
+
 }

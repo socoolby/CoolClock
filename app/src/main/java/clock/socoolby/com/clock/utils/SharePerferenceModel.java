@@ -21,6 +21,9 @@ public class SharePerferenceModel implements Serializable {
     private final static String KEY_IS_DISPLAY_SECOND = "key_is_display_second";
     private boolean isTickSound = true;
     private final static String KEY_IS_TICK_SOUND = "key_is_tick_sound";
+    private boolean isTriggerScreen = true;
+    private final static String KEY_IS_TRIGGER_SCREEN = "key_is_trigger_screen";
+
 
     private final static String KEY_CITY = "key_city";
     private String mCity;
@@ -79,6 +82,14 @@ public class SharePerferenceModel implements Serializable {
 
     public void setTickSound(boolean tickSound) {
         isTickSound = tickSound;
+    }
+
+    public boolean isTriggerScreen() {
+        return isTriggerScreen;
+    }
+
+    public void setTriggerScreen(boolean triggerScreen) {
+        isTriggerScreen = triggerScreen;
     }
 
     public String getCity() {
@@ -143,6 +154,7 @@ public class SharePerferenceModel implements Serializable {
             typeHourPower = jsonObject.getInt(KEY_TYPE_HOUR_POWER);
             isDisplaySecond = jsonObject.getBoolean(KEY_IS_DISPLAY_SECOND);
             isTickSound = jsonObject.getBoolean(KEY_IS_TICK_SOUND);
+            isTriggerScreen =jsonObject.optBoolean(KEY_IS_TRIGGER_SCREEN,true);
             mCity = jsonObject.getString(KEY_CITY);
             mDescription = jsonObject.optString(KEY_DESCRPTION, ClockApplication.getContext().getResources().getString(R.string.always_zuo_never_die));
             startHourPowerTime = new DateModel();
@@ -166,6 +178,7 @@ public class SharePerferenceModel implements Serializable {
             jsonObject.put(KEY_TYPE_HOUR_POWER, typeHourPower);
             jsonObject.put(KEY_IS_DISPLAY_SECOND, isDisplaySecond);
             jsonObject.put(KEY_IS_TICK_SOUND, isTickSound);
+            jsonObject.put(KEY_IS_TRIGGER_SCREEN, isTriggerScreen);
             jsonObject.put(KEY_CITY, mCity);
             jsonObject.put(KEY_DESCRPTION, mDescription);
             jsonObject.put(KEY_START_POWER, startHourPowerTime.getTime());

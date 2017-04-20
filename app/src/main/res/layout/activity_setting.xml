@@ -92,10 +92,25 @@
             android:text="@string/play_tick" />
 
         <TextView
-            android:id="@+id/tv_weather_title"
+            android:id="@+id/tv_trigger_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/cb_tick"
+            android:layout_marginTop="@dimen/setting_margin_top"
+            android:text="@string/screen_trigger" />
+
+        <CheckBox
+            android:id="@+id/cb_trigger_screen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_trigger_title"
+            android:text="@string/trigger_screen_on_off" />
+
+        <TextView
+            android:id="@+id/tv_weather_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cb_trigger_screen"
             android:layout_marginTop="@dimen/setting_margin_top"
             android:text="@string/weather_citiyname" />
 

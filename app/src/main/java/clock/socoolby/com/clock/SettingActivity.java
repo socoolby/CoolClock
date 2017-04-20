@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -59,6 +57,14 @@ public class SettingActivity extends Activity implements View.OnClickListener {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 model.setTickSound(b);
+            }
+        });
+        CheckBox cb_trigger_screen = (CheckBox) findViewById(R.id.cb_trigger_screen);
+        cb_trigger_screen.setChecked(model.isTriggerScreen());
+        cb_trigger_screen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                model.setTriggerScreen(isChecked);
             }
         });
 
@@ -174,7 +180,7 @@ public class SettingActivity extends Activity implements View.OnClickListener {
                 uninstallActivity();
                 break;
             case R.id.btn_about:
-                Intent intent = new Intent(this,AboutActivity.class);
+                Intent intent = new Intent(this, AboutActivity.class);
                 startActivity(intent);
                 break;
         }
