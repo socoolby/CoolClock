@@ -214,7 +214,10 @@ public class MainActivity extends Activity implements Handler.Callback, View.OnC
         String dateString = date.getDateString();
         String dayString = date.getToday();
         String timeString = model.isDisplaySecond() ? date.getTimeString() : date.getShortTimeString();
-        tv_time.setText(timeString.replace("1", " 1"));
+        timeString=timeString.replace("1", " 1");
+        if(timeString.startsWith(" "))
+            timeString=timeString.substring(1,timeString.length());
+        tv_time.setText(timeString);
         tv_date.setText(dateString.replace("1", " 1"));
         tv_day.setText(dayString);
         reportTime(date);

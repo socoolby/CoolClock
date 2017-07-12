@@ -103,7 +103,7 @@ public class Player {
 
         int monthTenDigit = month / 10 * 10;
         int monthUnit = month % 10;
-        if (monthTenDigit > 10)
+        if (monthTenDigit >=10)
             playList.add(NUM_AUDIO.get(monthTenDigit));
         if (monthUnit > 0)
             playList.add(NUM_AUDIO.get(monthUnit));
