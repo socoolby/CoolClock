@@ -18,8 +18,8 @@ Slide over to turn screen on and off is via proximity sensor(It's near by earpie
 CoolClock->Setting->Uninstall
 
 
-[Download APK](https://github.com/socoolby/CoolClock/blob/master/CoolClock.apk)
-
+[Download APK](https://github.com/socoolby/CoolClock/blob/master/CoolClock.apk)  
+[Install from Google Play Store](https://play.google.com/store/apps/details?id=clock.socoolby.com.clock)  
 SourceCode:[CoolClock](https://github.com/socoolby/CoolClock)
 
 Email:[socoolby@gmail.com](mailto:socoolby@gmail.com)
